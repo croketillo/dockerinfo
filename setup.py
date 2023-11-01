@@ -7,5 +7,8 @@ setup(
     author="croketillo",
     author_email="croketillo@gmail.com",
     packages=["docker_info"],
+    install_requires=[
+          'docker',
+      ],
     
 )
