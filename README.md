@@ -32,7 +32,7 @@ if container:
     print(f"IP Address: {ip_address}, Mac Address: {mac_address}")
 
 else:
-    print(f"Contenedor no encontrado: {container_name}")
+    print(f"Container not found: {container_name}")
 
 
 ```
