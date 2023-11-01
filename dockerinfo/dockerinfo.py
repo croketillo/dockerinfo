@@ -23,23 +23,23 @@ class DockerContainerInfo:
         self.container=container
 
     @property
-    def id(self):
+    def get_id(self):
         return self.container.id
 
     @property
-    def name(self):
+    def get_name(self):
         return self.container.name
 
     @property
-    def status(self):
+    def get_status(self):
         return self.container.status
 
     @property
-    def config_all(self):
+    def get_config_all(self):
         return self.container.attrs['Config']
 
     @property
-    def config_hostname(self):
+    def get_hostname(self):
         info=self.container.attrs['Config']['Hostname']
         if info == '':
             return None
@@ -47,42 +47,42 @@ class DockerContainerInfo:
             return info
 
     @property
-    def config_domainname(self):
+    def get_domainname(self):
         info=self.container.attrs['Config']['Domainname']
         if info == '':
             return None
         return info
 
     @property
-    def config_user(self):
+    def get_user(self):
         info=self.container.attrs['Config']['User']
         if info == '':
             return None
         return info
 
     @property
-    def config_stdin(self):
+    def get_stdin(self):
         info=self.container.attrs['Config']['AttachStdin']
         if info == '':
             return None
         return info
 
     @property
-    def config_stdout(self):
+    def get_stdout(self):
         info=self.container.attrs['Config']['AttachStdout']
         if info == '':
             return None
         return info
 
     @property
-    def config_stderr(self):
+    def get_stderr(self):
         info=self.container.attrs['Config']['AttachStderr']
         if info == '':
             return None
         return info
 
     @property
-    def config_ports(self):
+    def get_ports(self):
         info=self.container.attrs['Config']['ExposedPorts']
         if info == '':
             return None
@@ -90,105 +90,98 @@ class DockerContainerInfo:
             return ports
 
     @property
-    def config_tty(self):
+    def get_tty(self):
         info=self.container.attrs['Config']['Tty']
         if info == '':
             return None
         return info
 
     @property
-    def config_tty(self):
-        info=self.container.attrs['Config']['Tty']
-        if info == '':
-            return None
-        return info
-
-    @property
-    def config_openstdin(self):
+    def get_openstdin(self):
         info=self.container.attrs['Config']['OpenStdin']
         if info == '':
             return None
         return info
 
     @property
-    def config_stdinonce(self):
+    def get_stdinonce(self):
         info=self.container.attrs['Config']['StdinOnce']
         if info == '':
             return None
         return info
 
     @property
-    def config_env(self):
+    def get_env(self):
         info=self.container.attrs['Config']['Env']
         if info == '':
             return None
         return info
 
     @property
-    def config_onbuild(self):
+    def get_onbuild(self):
         info=self.container.attrs['Config']['OnBuild']
         if info == '':
             return None
         return info
 
     @property
-    def cmd(self):
+    def get_cmd(self):
         info=self.container.attrs['Config']['Cmd']
         if info == '':
             return None
         return info
 
     @property
-    def image(self):
+    def get_image(self):
         info=self.container.attrs['Config']['Image']
         if info == '':
             return None
         return info
 
     @property
-    def volumes(self):
+    def get_volumes(self):
         info=self.container.attrs['Config']['Volumes']
         if info == '':
             return None
         return info
 
     @property
-    def workdir(self):
+    def get_workdir(self):
         info=self.container.attrs['Config']['WorkingDir']
         if info == '':
             return None
         return info
 
     @property
-    def entrypoint(self):
+    def get_entrypoint(self):
         info=self.container.attrs['Config']['Entrypoint'][0]
         if info == '':
             return None
         return info
 
     @property
-    def labels(self):
+    def get_labels(self):
         info=self.container.attrs['Config']['Labels']
         if info == '':
             return None
         return info
 
     @property
-    def config_stopsignal(self):
+    def get_stopsignal(self):
         info=self.container.attrs['Config']['StopSignal']
         if info == '':
             return None
         return info
 
     @property
-    def networks_all(self):
+    def get_networks_all(self):
         return self.container.attrs['NetworkSettings']['Networks']
 
-    def network_config(self,network):
+    def get_network_config(self,network):
         net=self.container.attrs['NetworkSettings']['Networks'][network]
         return net
 
-    def net_attribute(self,network,att):
+    def get_network_attribute(self,network,att):
         #ATTRIBUTES:
         #'IPAMConfig','Links','Aliases','NetworkID','EndpointID','Gateway','IPAddress',IPPrefixLen',
         #'IPv6Gateway','GlobalIPv6Address', 'GlobalIPv6PrefixLen','MacAddress','DriverOpts'
@@ -196,10 +189,6 @@ class DockerContainerInfo:
         return att
 
     @property
-    def environment(self):
-        return self.container.attrs['Config']['Env']
-
-    @property
-    def volumes(self):
+    def mount_volumes(self):
         return self.container.attrs['Mounts']
         
