@@ -3,7 +3,7 @@ DOCKERINFO
 
 author: croketillo <croketillo@gmail.com> <https://github.com/croketillo>
 
-License: GNU-3
+License: GNU(GPL)-3
 """
 
 
