@@ -1,20 +1,31 @@
-from setuptools import setup
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+#
+# dockerinfo - Docker container information extractor 
 
-readme=open("./README.md","r")
+
+from setuptools import setup
+import io
+from os import path
+
+
+here = path.abspath(path.dirname(__file__))
+
+with io.open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
     name="dockerinfo",
     version="0.1",
-    description="Extract docker container information",
+    description="Docker container information extractor",
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    url='https://github.com/croketillo/dockerinfo',
     author="croketillo",
     author_email="croketillo@gmail.com",
+    license='GNU-3',
+    keywords=['docker', 'docker info', 'container'],
     packages=["dockerinfo"],
-    long_description=readme.read(),
-    long_description_type="text/markdown"
-    keywords=['docker', 'docker info', 'container']
-    license='GNU-3'
-    install_requires=[
-          'docker',
-      ],
+    install_requires=['docker'],
     
 )

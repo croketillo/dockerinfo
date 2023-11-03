@@ -1,0 +1,19 @@
+__pycache__/*
+dockerinfo/__pycache__/*
+dist
+dockerinfo.egg-info
+*.pyc
+.coverage
+.idea/
+.vscode/
+build/
+*.html
+*.css
+*.png
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
