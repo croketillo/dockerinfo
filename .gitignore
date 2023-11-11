@@ -1,8 +1,8 @@
 __pycache__/*
 dockerinfo/__pycache__/*
 build/
-dist
-dockerinfo.egg-info
+dist/
+dockerinfo.egg-info/
 *.pyc
 .coverage
 .pypirc

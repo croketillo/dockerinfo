@@ -3,7 +3,7 @@ from os import path
 from setuptools import setup, find_packages
 from sys import version_info
 
-VERSION = "0.1"
+VERSION = "1.1"
 CURR_PATH = "{}{}".format(path.abspath(path.dirname(__file__)), '/')
 
 
@@ -89,7 +89,7 @@ setup(
     version=VERSION,
     license=read("LICENSE", is_encoding=False, ignore_raises=True),
     packages=find_packages(),
-    description='Dockerinfo - Extract conainer info',
+    description='Dockerinfo - Extract information from docker containers',
     long_description=read("README.rst"),
     author='croketillo',
     author_email='croketillo@gmail.com',
@@ -99,14 +99,7 @@ setup(
         'docker',
     ],
     setup_requires=['docker'],
-    tests_require=[
-        'pytest',
-        'pytest-cov',
-        'pytest-html',
-        'pytest-dependency',
-    ],
     classifiers=[
-        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'Programming Language :: Python :: 2.7',

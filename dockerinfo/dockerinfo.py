@@ -1,8 +1,8 @@
 """
-DOCKERINFO
+DOCKERINFO v1.0
 
-author: croketillo <croketillo@gmail.com> <https://github.com/croketillo>
-
+Author: croketillo <croketillo@gmail.com> <https://github.com/croketillo>
+Description: Extract information from docker containers
 License: GNU(GPL)-3
 """
 
@@ -18,12 +18,12 @@ class GetDockerContainers:
 
 
     def get_container_by_name(self,container_name):
-        containers = self.list_containers(all_containers=True) #Obtener todos los contenedores
+        containers = self.list_containers(all_containers=True) #Get all containers
         for container in containers:
             if container.name == container_name:
-                return container# Retorna el contenedor si se encuentra
+                return container #Return the container if exist
             else:
-                return None #Retorna None si el contenedor no se encuentra
+                return None #Return None if container dont exist 
 
 
 

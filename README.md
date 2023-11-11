@@ -1,6 +1,6 @@
 # DOCKERINFO
 
-Extract docker container info module
+Extract information from docker containers
 
 
 ## Example:
@@ -16,7 +16,7 @@ container = docker_info.get_container_by_name('test01') #container example 'test
 
 if container:
     container_info = DockerContainerInfo(container)
-    # Imprime información del contenedor
+    # Print container info
     print(f"Container ID: {container_info.get_id}")
     print(f"Container Name: {container_info.get_name}")
     print(f"Container Status: {container_info.get_status}")
