@@ -3,7 +3,7 @@ from os import path
 from setuptools import setup, find_packages
 from sys import version_info
 
-VERSION = "1.1"
+VERSION = "1.1.2"
 CURR_PATH = "{}{}".format(path.abspath(path.dirname(__file__)), '/')
 
 
@@ -89,7 +89,7 @@ setup(
     version=VERSION,
     license=read("LICENSE", is_encoding=False, ignore_raises=True),
     packages=find_packages(),
-    description='Dockerinfo - Extract information from docker containers',
+    description='Dockerinfo - Easily extract information from docker containers',
     long_description=read("README.rst"),
     author='croketillo',
     author_email='croketillo@gmail.com',

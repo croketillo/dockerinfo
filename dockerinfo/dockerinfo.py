@@ -5,8 +5,6 @@ Author: croketillo <croketillo@gmail.com> <https://github.com/croketillo>
 Description: Extract information from docker containers
 License: GNU(GPL)-3
 """
-
-
 import docker
 
 class GetDockerContainers:
@@ -24,8 +22,6 @@ class GetDockerContainers:
                 return container #Return the container if exist
             else:
                 return None #Return None if container dont exist 
-
-
 
 class DockerContainerInfo:
     def __init__(self,container):
@@ -200,4 +196,4 @@ class DockerContainerInfo:
     @property
     def mount_volumes(self):
         return self.container.attrs['Mounts']
-        
+    
