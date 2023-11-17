@@ -1,6 +1,6 @@
 # DOCKERINFO
 
-![PyPI - Downloads](https://img.shields.io/pypi/dm/dockerinfo?color=%2360EE59) ![Total Downloads](https://static.pepy.tech/badge/dockerinfo) 
+![PyPI](https://img.shields.io/pypi/v/dockerinfo) ![PyPI - Downloads](https://img.shields.io/pypi/dm/dockerinfo?color=%2360EE59) ![Total Downloads](https://static.pepy.tech/badge/dockerinfo) 
 
 Easily extract information from docker containers
 
