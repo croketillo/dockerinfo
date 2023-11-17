@@ -1,6 +1,13 @@
 DOCKERINFO
 ==========
 
+.. image:: https://img.shields.io/pypi/dm/dockerinfo
+   :alt: PyPI - Downloads per month
+
+.. image:: https://static.pepy.tech/badge/dockerinfo
+   :alt: PyPI - Total Downloads
+
+
 Easily extract information from docker containers
 
 Example:
