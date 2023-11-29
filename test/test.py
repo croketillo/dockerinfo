@@ -12,6 +12,9 @@ for container in container_list:
     print(f"Container ID: {container_info.get_id}")
     print(f"Container Name: {container_info.get_name}")
     print(f"Container Status: {container_info.get_status}")
+    print(f"Container Log (last 5 lines):")
+    for log_line in container_info.get_logs_tail(5):
+        print(log_line)
 
 # Extract information from a specific container (in this case, 'test01').
 print("\n>>> LOOKING FOR A SPECIFIC CONTAINER (test01)")

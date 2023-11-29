@@ -1,5 +1,5 @@
 """
-DOCKERINFO v1.1.2
+DOCKERINFO v1.2
 
 Author: croketillo <croketillo@gmail.com> <https://github.com/croketillo>
 Description: Extract information from docker containers
@@ -196,4 +196,13 @@ class DockerContainerInfo:
     @property
     def mount_volumes(self):
         return self.container.attrs['Mounts']
-    
+
+    def get_logs(self):
+        logs = self.container.logs().decode('utf-8').split('\n')
+
+    def get_logs_since(self, timestamp):
+        logs = self.container.logs(since=timestamp).decode('utf-8').split('\n')
+
+    def get_logs_tail(self, lines):
+        logs = self.container.logs(tail=lines).decode('utf-8').split('\n')
+        return logs

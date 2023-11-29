@@ -1,19 +1,21 @@
 DOCKERINFO
 ==========
 
+
 .. image:: https://img.shields.io/pypi/dm/dockerinfo
    :alt: PyPI - Downloads per month
 
 .. image:: https://static.pepy.tech/badge/dockerinfo
    :alt: PyPI - Total Downloads
 
-
 Easily extract information from docker containers
+
+Since version 1.2 can extract containers logs.
 
 Example:
 --------
 
-::
+.. code:: python
 
    from dockerinfo.dockerinfo import DockerContainerInfo, GetDockerContainers
 
@@ -29,6 +31,9 @@ Example:
        print(f"Container ID: {container_info.get_id}")
        print(f"Container Name: {container_info.get_name}")
        print(f"Container Status: {container_info.get_status}")
+       print(f"Container Log (last 5 lines):")
+       for log_line in container_info.get_logs_tail(5):
+         print(log_line)
 
    # Extract information from a specific container (in this case, 'test01').
    print("\n>>> LOOKING FOR A SPECIFIC CONTAINER (test01)")
@@ -170,3 +175,30 @@ Returns a specific attribute of a network of the container.
 -  **mount_volumes**
 
 Returns the configuration of volumes mounted in the container.
+
+-  **get_logs** Get the logs of the container, split into lines. Return
+   a list containing each line of the container’s logs as a string.
+
+-  **get_logs_since(timestamp)** Get the logs of the container since a
+   specified timestamp, split into lines.
+
+Args:
+
+timestamp (int): The Unix timestamp from which to start fetching logs.
+
+Return a list containing each line of the container’s logs as a string.
+
+-  **get_logs_tail(lines)**
+
+Get the last N lines of the container’s logs, split into lines.
+
+Args:
+
+lines (int): The number of lines to retrieve from the end of the logs.
+Returns:
+
+Returs a list containing each line of the container’s logs as a string.
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/dockerinfo
+.. |PyPI - Downloads| image:: https://img.shields.io/pypi/dm/dockerinfo?color=%2360EE59
+.. |Total Downloads| image:: https://static.pepy.tech/badge/dockerinfo

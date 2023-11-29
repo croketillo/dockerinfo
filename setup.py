@@ -3,7 +3,7 @@ from os import path
 from setuptools import setup, find_packages
 from sys import version_info
 
-VERSION = "1.1.3"
+VERSION = "1.2"
 CURR_PATH = "{}{}".format(path.abspath(path.dirname(__file__)), '/')
 
 
@@ -107,5 +107,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Topic :: System :: Systems Administration',
+        'Topic :: Utilities',
     ],
 )
