@@ -3,7 +3,7 @@ from os import path
 from setuptools import setup, find_packages
 from sys import version_info
 
-VERSION = "1.2"
+VERSION = "1.2.1"
 CURR_PATH = "{}{}".format(path.abspath(path.dirname(__file__)), '/')
 
 
