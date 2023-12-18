@@ -6,6 +6,7 @@ Description: Extract information from docker containers
 License: GNU(GPL)-3
 """
 import docker
+from datetime import datetime
 
 class GetDockerContainers:
     def __init__(self):
@@ -139,6 +140,24 @@ class DockerContainerInfo:
         :param timestamp: The timestamp in seconds.
         :return: The logs since the specified timestamp.
         """
+        logs = self.container.logs(since=timestamp).decode('utf-8').split('\n')
+        return logs
+    
+    def get_logs_format_date(self, date_string):
+        """
+        Get the logs of the Docker container since a specified date.
+
+        :param date_string: The date in MM/DD/YYYY format.
+        :return: The logs since the specified date.
+        """
+        # Convert the date string to a datetime object
+        date_format = "%m/%d/%Y"
+        date_object = datetime.strptime(date_string, date_format)
+
+        # Convert datetime object to timestamp
+        timestamp = int(date_object.timestamp())
+
+        # Get the logs since the specified timestamp
         logs = self.container.logs(since=timestamp).decode('utf-8').split('\n')
         return logs
 
