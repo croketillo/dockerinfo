@@ -178,6 +178,21 @@ timestamp (int): The Unix timestamp from which to start fetching logs.
 
 Return a list containing each line of the container's logs as a string.
 
+- **get_logs_format_date(date_string)**
+Get the logs of the Docker container since a specified date.
+
+Args:
+date_string: A string representing the date in MM/DD/YYYY format.
+
+Returns the logs since the specified date.
+
+Example:
+```
+logs_since_date = instance.get_logs_since("01/15/2023")
+```
+**Note:** The date string must be in the correct format to avoid conversion errors
+
+
 - **get_logs_tail(lines)**
 
 Get the last N lines of the container's logs, split into lines.
