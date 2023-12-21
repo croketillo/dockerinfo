@@ -1,3 +1,1 @@
-import dockerinfo
-
-__all__=["dockerinfo"]
+from dockerinfo.dockerinfo import *

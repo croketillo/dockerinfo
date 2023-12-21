@@ -9,7 +9,7 @@ Since version 1.2 can extract containers logs.
 ## Example:
 
 ```python
-from dockerinfo.dockerinfo import DockerContainerInfo, GetDockerContainers
+from dockerinfo import DockerContainerInfo, GetDockerContainers
 
 # Create an instance of the GetDockerContainers class and list the existing containers.
 # Use all_containers=True/False to list inactive containers.

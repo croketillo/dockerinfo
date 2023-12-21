@@ -1,5 +1,5 @@
 """
-DOCKERINFO v1.2
+DOCKERINFO v1.3.1
 
 Author: croketillo <croketillo@gmail.com> <https://github.com/croketillo>
 Description: Extract information from docker containers
