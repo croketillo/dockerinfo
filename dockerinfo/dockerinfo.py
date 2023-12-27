@@ -1,9 +1,16 @@
 """
-DOCKERINFO v1.3.1
+DOCKERINFO v1.3.2
 
 Author: croketillo <croketillo@gmail.com> <https://github.com/croketillo>
 Description: Extract information from docker containers
 License: GNU(GPL)-3
+
+Example usage:
+=============
+
+docker_helper = GetDockerContainers()
+containers_list = docker_helper.list_containers(all_containers=True)
+my_container = docker_helper.get_container_by_name("my_container_name")
 """
 import docker
 from datetime import datetime
@@ -38,12 +45,6 @@ class GetDockerContainers:
             else:
                 # Return None if the container doesn't exist
                 return None
-
-# Example usage:
-# docker_helper = GetDockerContainers()
-# containers_list = docker_helper.list_containers(all_containers=True)
-# my_container = docker_helper.get_container_by_name("my_container_name")
-
 
 class DockerContainerInfo:
     """
