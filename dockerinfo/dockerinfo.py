@@ -1,23 +1,23 @@
 """
-DOCKERINFO v1.3.2
+DOCKERINFO v1.4
 
 Author: croketillo <croketillo@gmail.com> <https://github.com/croketillo>
-Description: Extract information from docker containers
+Description: Extract information from Docker containers
 License: GNU(GPL)-3
 
 Example usage:
 =============
 
-docker_helper = GetDockerContainers()
+docker_helper = DockerHelper()
 containers_list = docker_helper.list_containers(all_containers=True)
 my_container = docker_helper.get_container_by_name("my_container_name")
 """
+
 import docker
 from datetime import datetime
 
-class GetDockerContainers:
+class DockerHelper:
     def __init__(self):
-        # Initialize a Docker client using the default environment settings
         self.client = docker.from_env()
 
     def list_containers(self, all_containers=False):
@@ -34,21 +34,17 @@ class GetDockerContainers:
         Get a Docker container by its name.
 
         :param container_name: The name of the Docker container to retrieve.
-        :return: The Docker container object if it exists, otherwise return None.
+        :return: The Docker container object if it exists, otherwise None.
         """
-        containers = self.list_containers(all_containers=True)  # Get all containers
-
+        containers = self.list_containers(all_containers=True)
         for container in containers:
             if container.name == container_name:
-                # Return the container if it exists
                 return container
-            else:
-                # Return None if the container doesn't exist
-                return None
+        return None
 
 class DockerContainerInfo:
     """
-    A class that provides information and operations related to a Docker container.
+    Provides information and operations related to a Docker container.
 
     :param container: Docker container object.
     """
@@ -57,82 +53,68 @@ class DockerContainerInfo:
         self.container = container
 
     @property
-    def get_id(self):
+    def id(self):
         """Get the ID of the Docker container."""
         return self.container.id
 
     @property
-    def get_name(self):
+    def name(self):
         """Get the name of the Docker container."""
         return self.container.name
 
     @property
-    def get_status(self):
+    def status(self):
         """Get the status of the Docker container."""
         return self.container.status
 
     @property
-    def get_config_all(self):
+    def config(self):
         """Get the complete configuration of the Docker container."""
         return self.container.attrs['Config']
 
     @property
-    def get_hostname(self):
+    def hostname(self):
         """Get the hostname of the Docker container."""
-        info = self.container.attrs['Config']['Hostname']
-        if info == '':
-            return None
-        else:
-            return info
+        return self.container.attrs['Config'].get('Hostname') or None
 
     @property
-    def get_domainname(self):
+    def domainname(self):
         """Get the domain name of the Docker container."""
-        info = self.container.attrs['Config']['Domainname']
-        if info == '':
-            return None
-        return info
-
-    # ... (Similar property methods for other configuration attributes)
+        return self.container.attrs['Config'].get('Domainname') or None
 
     @property
-    def get_stopsignal(self):
+    def stopsignal(self):
         """Get the stop signal of the Docker container."""
-        info = self.container.attrs['Config']['StopSignal']
-        if info == '':
-            return None
-        return info
+        return self.container.attrs['Config'].get('StopSignal') or None
 
     @property
-    def get_networks_all(self):
+    def networks(self):
         """Get information about all networks associated with the Docker container."""
         return self.container.attrs['NetworkSettings']['Networks']
 
     def get_network_config(self, network):
         """Get the configuration of a specific network associated with the Docker container."""
-        net = self.container.attrs['NetworkSettings']['Networks'][network]
-        return net
+        return self.networks.get(network)
 
-    def get_network_attribute(self, network, att):
+    def get_network_attribute(self, network, attribute):
         """
         Get a specific attribute of a network associated with the Docker container.
 
         :param network: The name of the network.
-        :param att: The attribute to retrieve.
+        :param attribute: The attribute to retrieve.
         :return: The value of the specified attribute.
         """
-        att = self.container.attrs['NetworkSettings']['Networks'][network][att]
-        return att
+        network_info = self.networks.get(network, {})
+        return network_info.get(attribute)
 
     @property
-    def mount_volumes(self):
+    def mounted_volumes(self):
         """Get information about mounted volumes for the Docker container."""
         return self.container.attrs['Mounts']
 
     def get_logs(self):
         """Get the logs of the Docker container."""
-        logs = self.container.logs().decode('utf-8').split('\n')
-        return logs
+        return self.container.logs().decode('utf-8').split('\n')
 
     def get_logs_since(self, timestamp):
         """
@@ -141,26 +123,19 @@ class DockerContainerInfo:
         :param timestamp: The timestamp in seconds.
         :return: The logs since the specified timestamp.
         """
-        logs = self.container.logs(since=timestamp).decode('utf-8').split('\n')
-        return logs
-    
-    def get_logs_format_date(self, date_string):
+        return self.container.logs(since=timestamp).decode('utf-8').split('\n')
+
+    def get_logs_since_date(self, date_string):
         """
         Get the logs of the Docker container since a specified date.
 
         :param date_string: The date in MM/DD/YYYY format.
         :return: The logs since the specified date.
         """
-        # Convert the date string to a datetime object
         date_format = "%m/%d/%Y"
         date_object = datetime.strptime(date_string, date_format)
-
-        # Convert datetime object to timestamp
         timestamp = int(date_object.timestamp())
-
-        # Get the logs since the specified timestamp
-        logs = self.container.logs(since=timestamp).decode('utf-8').split('\n')
-        return logs
+        return self.get_logs_since(timestamp)
 
     def get_logs_tail(self, lines):
         """
@@ -169,5 +144,4 @@ class DockerContainerInfo:
         :param lines: The number of lines to retrieve.
         :return: The last specified number of lines from the logs.
         """
-        logs = self.container.logs(tail=lines).decode('utf-8').split('\n')
-        return logs
+        return self.container.logs(tail=lines).decode('utf-8').split('\n')
